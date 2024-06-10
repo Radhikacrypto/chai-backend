@@ -6,6 +6,21 @@ dotenv.config({
     path:'./env'
 })
 
+connectDB()
+.then(()=>{
+    app.on("error",()=>{
+        console.log(`error: ${err}`)
+        throw error
+    })
+
+    app.listen(process.env.PORT||800,()=>{
+        console.log(`web running on port ${process.env.PORT}`)
+    })
+})
+.catch((error)=>{
+    console.log("encounter error from index,js catch segment and error is",error);
+})
+
 
 
 
